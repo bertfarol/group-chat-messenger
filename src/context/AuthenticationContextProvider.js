@@ -1,5 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import {
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  signInAnonymously,
+} from "firebase/auth";
 import { auth, provider } from "../firebase";
 
 export const AuthContext = createContext(null);
@@ -36,6 +41,17 @@ const AuthenticationContextProvider = ({ children }) => {
     }
   };
 
+  const signInAsGuest = async () => {
+    try {
+      const result = await signInAnonymously(auth);
+      const user = result.user;
+      console.log("user: ", user);
+      console.log("successfull signed in as guest");
+    } catch (error) {
+      console.log("signInAsGuest: ", error);
+    }
+  }
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -48,6 +64,7 @@ const AuthenticationContextProvider = ({ children }) => {
 
   const contextvalue = {
     signInWithFacebook,
+    signInAsGuest,
     handleSignOut,
     user,
     authChecked,
