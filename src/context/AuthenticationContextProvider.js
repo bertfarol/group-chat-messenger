@@ -35,7 +35,6 @@ const AuthenticationContextProvider = ({ children }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log(user);
     } catch (error) {
       console.log("signInWithFacebook: ", error);
     }
@@ -45,7 +44,7 @@ const AuthenticationContextProvider = ({ children }) => {
     try {
       const result = await signInAnonymously(auth);
       const user = result.user;
-      console.log("user: ", user);
+      // console.log("user: ", user);
       console.log("successfull signed in as guest");
     } catch (error) {
       console.log("signInAsGuest: ", error);
