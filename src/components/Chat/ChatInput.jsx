@@ -1,47 +1,68 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { ChatContext } from "../../context/ChatContextProvider";
 import { AuthContext } from "../../context/AuthenticationContextProvider";
 import { UserContext } from "../../context/UsersContextProvider";
 
 const ChatInput = () => {
-  const [newMessage, setNewMessage] = useState();
-  const inputFieldIsEmpty = newMessage?.trim().length > 0;
+  const [newMessage, setNewMessage] = useState("");
   const { createMessage } = useContext(ChatContext);
   const { displayName, user } = useContext(AuthContext);
-  const { updateUserIsTyping} = useContext(UserContext);
+  const { updateUserIsTyping } = useContext(UserContext);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.textContent = "Type a message";
+  }, []);
+
+  const sendMessage = () => {
     createMessage(newMessage, displayName);
     setNewMessage("");
+    updateUserIsTyping(false, user);
   };
 
-  const handleTyping = (e) => {
-    const isTyping = e.target.value.trim() !== "";
-    setNewMessage(e.target.value);
+  const handleDivInput = (e) => {
+    const inputText = e.target.textContent;
+    const isTyping = inputText.trim() !== "";
     updateUserIsTyping(isTyping, user);
+    setNewMessage(inputText);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.which === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      if (newMessage.trim() !== "") {
+        sendMessage();
+      }
+      inputRef.current.textContent = "";
+    }
+  };
+
+  const handleInputFocus = () => {
+    if (inputRef.current.textContent === "Type a message") {
+      inputRef.current.textContent = "";
+    }
+  };
+
+  const handleInputBlur = () => {
+    if (inputRef.current.textContent.trim() === "") {
+      inputRef.current.textContent = "Type a message";
+    }
   };
 
   return (
     <div className="relative px-6 py-4 bg-white">
-        <form
-        onSubmit={sendMessage}
-        className="bg-[#f9f8f8] rounded-3xl w-full flex overflow-hidden"
-      >
-        <input
-          type="text"
-          placeholder="Type a message"
-          className="py-2.5 px-4 outline-none grow bg-[#f9f8f8]"
-          value={newMessage}
-          onChange={(e) => handleTyping(e)}
-        />
-        <button
-          disabled={!inputFieldIsEmpty}
-          className="px-4 font-medium hover:text-black/80"
-        >
-          Send
-        </button>
-      </form>
+      <div className="bg-[#f9f8f8] rounded-3xl w-full flex overflow-hidden">
+        <div
+          ref={inputRef}
+          contentEditable={true}
+          onFocus={handleInputFocus}
+          onInput={handleDivInput}
+          onKeyDown={handleKeyDown}
+          onBlur={handleInputBlur}
+          className={`${newMessage.trim() !== "" ? "text-black" : "text-black/50" } py-2.5 px-4 outline-none grow bg-[#f9f8f8] min-h-[20px] text-[15px]`}
+        ></div>
+      </div>
     </div>
   );
 };

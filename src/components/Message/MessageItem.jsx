@@ -19,7 +19,11 @@ const MessageItem = ({ data }) => {
             {user}
           </span>
         )}
-        <div className={`py-2 px-5 rounded-3xl ${messageStyle}`}>{message}</div>
+        <div
+          className={`py-2 px-5 rounded-3xl ${messageStyle}`}
+        >
+          {message}
+        </div>
       </div>
     </>
   );

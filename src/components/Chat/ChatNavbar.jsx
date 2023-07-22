@@ -1,19 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthenticationContextProvider";
 import Avatar from "react-avatar";
 import { Icon } from "@iconify/react";
 import useClickOutside from "../../hooks/useClickOutside";
+import { UserContext } from "../../context/UsersContextProvider";
 
 const ChatNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { displayName, handleSignOut } = useContext(AuthContext);
+  const [randomColor, setRandomColor] = useState("");
+  const { displayName, handleSignOut, user } = useContext(AuthContext);
+  const { newAccountUsers } = useContext(UserContext);
 
   const menuRef = useRef();
 
   useClickOutside(menuRef, () => {
-   setShowMenu(false);
+    setShowMenu(false);
   });
+
+  useEffect(() => {
+    const matchedUser = newAccountUsers.find((newUser) => newUser.uid === user);
+    if (matchedUser) {
+      setRandomColor(matchedUser.avatarColor);
+    } else {
+      setRandomColor("")
+    }
+  }, [user, newAccountUsers]);
 
   return (
     <nav className="flex items-center justify-between px-4 border-b select-none md:justify-end">
@@ -31,19 +43,10 @@ const ChatNavbar = () => {
         >
           <div className="font-bold">{displayName}</div>
           <Avatar
-            color={Avatar.getRandomColor("sitebase", [
-              "#AF2D2D",
-              "#1c3bec",
-              "#ffa000",
-              "#5500e1",
-              "#52d7e7",
-              "#ff598c",
-              "#f4a261",
-              "#762575",
-            ])}
+            color={randomColor}
             name={displayName}
-            size="40"
-            round="40px"
+            size="35"
+            round="35px"
           />
         </div>
         {showMenu && (

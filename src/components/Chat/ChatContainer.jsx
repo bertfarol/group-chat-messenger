@@ -5,7 +5,7 @@ import ChatNavbar from '../Chat/ChatNavbar';
 
 const ChatContainer = () => {
   return (
-    <div className="flex flex-col w-full h-full bg-">
+    <div className="flex flex-col w-full h-full">
       <ChatNavbar />
       <MessageList />
       <ChatInput />

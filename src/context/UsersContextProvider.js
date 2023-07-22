@@ -11,11 +11,13 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+import { getRandomColors } from "../utils/getRandomColors";
 
 export const UserContext = createContext(null);
 
 const UsersContextProvider = ({ children }) => {
   const [newAccountUsers, setNewAccountUsers] = useState([]);
+  const randomColors = getRandomColors();
 
   useEffect(() => {
     const chatCollectionRef = collection(db, "users");
@@ -39,6 +41,7 @@ const UsersContextProvider = ({ children }) => {
       await setDoc(userDocRef, {
         displayName: displayName,
         isTyping: isTyping,
+        avatarColor: randomColors,
         uid: id,
         createdAt: serverTimestamp(),
       });

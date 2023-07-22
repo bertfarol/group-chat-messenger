@@ -44,7 +44,7 @@ const Login = () => {
         <p className="mt-2 font-bold text-black/70">
           Sign in to join the group.
         </p>
-        <div className="flex flex-col max-w-xs gap-4 mt-10 xs:px-6 ">
+        <div className="flex flex-col max-w-[240px] gap-4 mt-10 xs:px-6 ">
           <button
             onClick={signInWithFacebook}
             className="flex items-center gap-3 px-4 py-2 text-white font-medium rounded bg-[#3b5998] hover:opacity-80"
