@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthenticationContextProvider";
 
-const MessageBox = ({ data }) => {
+const MessageItem = ({ data }) => {
   const { displayName } = useContext(AuthContext);
   const { message, user } = data;
 
@@ -14,15 +14,15 @@ const MessageBox = ({ data }) => {
   return (
     <>
       <div className={`w-fit mt-2 ${messagePosition}`}>
-        <div className={`py-2 px-5 rounded-3xl ${messageStyle}`}>{message}</div>
         {!sender && (
-          <span className="text-xs pl-2 text-[#a5a4a4]">
-            {!displayName ? user : "Guest"}
+          <span className="text-xs pl-2 text-[#65676B] capitalize select-none">
+            {user}
           </span>
         )}
+        <div className={`py-2 px-5 rounded-3xl ${messageStyle}`}>{message}</div>
       </div>
     </>
   );
 };
 
-export default MessageBox;
+export default MessageItem;

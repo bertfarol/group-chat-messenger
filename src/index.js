@@ -1,19 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthenticationContextProvider from "./context/AuthenticationContextProvider";
 import ChatContextProvider from "./context/ChatContextProvider";
+import UsersContextProvider from "./context/UsersContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthenticationContextProvider>
-      <ChatContextProvider>
-        <App />
-      </ChatContextProvider>
-    </AuthenticationContextProvider>
+    <UsersContextProvider>
+      <AuthenticationContextProvider>
+        <ChatContextProvider>
+          <App />
+        </ChatContextProvider>
+      </AuthenticationContextProvider>
+    </UsersContextProvider>
   </React.StrictMode>
 );
 

@@ -1,19 +1,29 @@
 import "./App.css";
-import { useContext } from "react";
+import { useContext} from "react";
 import { AuthContext } from "./context/AuthenticationContextProvider";
-import ChatBox from "./components/ChatBox";
 import { Icon } from "@iconify/react";
+import GuestAddName from "./components/GuestAddName";
+import Navbar from "./components/Navbar";
+import UserList from "./components/UserList";
+import ChatContainer from "./components/ChatContainer";
+import Messenger from "./components/Messenger";
 
 function App() {
-  const { signInWithFacebook, signInAsGuest, user, authChecked, loading } =
-    useContext(AuthContext);
+  const {
+    signInWithFacebook,
+    signInAsGuest,
+    user,
+    authChecked,
+    loading,
+    displayName,
+  } = useContext(AuthContext);
 
   if (!authChecked) {
     return <div>Loading...</div>;
   }
 
   if (user) {
-    return <ChatBox />;
+    return <Messenger />;
   }
 
   return (

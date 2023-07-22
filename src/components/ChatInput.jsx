@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { ChatContext } from "../context/ChatContextProvider";
 import { AuthContext } from "../context/AuthenticationContextProvider";
 
-const InputBox = () => {
+const ChatInput = () => {
   const [newMessage, setNewMessage] = useState();
   const inputFieldIsEmpty = newMessage?.trim().length > 0;
   const { createMessage } = useContext(ChatContext);
@@ -15,9 +15,9 @@ const InputBox = () => {
   };
   
   return (
-    <div className="px-6 py-4 bg-white relative">
+    <div className="relative px-6 py-4 bg-white">
       {inputFieldIsEmpty && (
-        <div className="px-6 text-sm absolute left-4 -top-2 text-black/40 animate-pulse">
+        <div className="absolute px-6 text-sm left-4 -top-2 text-black/40 animate-pulse">
           Typing...
         </div>
       )}
@@ -43,4 +43,4 @@ const InputBox = () => {
   );
 };
 
-export default InputBox;
+export default ChatInput;
