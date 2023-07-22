@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { ChatContext } from "../context/ChatContextProvider";
-import { AuthContext } from "../context/AuthenticationContextProvider";
-import { UserContext } from "../context/UsersContextProvider";
+import { ChatContext } from "../../context/ChatContextProvider";
+import { AuthContext } from "../../context/AuthenticationContextProvider";
+import { UserContext } from "../../context/UsersContextProvider";
 
 const ChatInput = () => {
   const [newMessage, setNewMessage] = useState();

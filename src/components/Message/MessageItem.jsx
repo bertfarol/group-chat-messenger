@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthenticationContextProvider";
+import { AuthContext } from "../../context/AuthenticationContextProvider";
 
 const MessageItem = ({ data }) => {
   const { displayName } = useContext(AuthContext);

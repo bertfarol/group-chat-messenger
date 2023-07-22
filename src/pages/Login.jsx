@@ -8,25 +8,25 @@ const Login = () => {
   
   return (
     <div className="flex h-screen">
-      <div className="grow login-overlay">
+      <div className="hidden grow login-overlay md:block">
         <img
           src="./login-bg.jpg"
           alt="Chatting people"
-          className="object-cover object-center h-full w-full"
+          className="object-cover object-center w-full h-full"
         />
-        <div className=" absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-40">
+        <div className="absolute z-40 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
           <Icon
-            icon="fluent:chat-mail-20-regular"
+            icon="fluent:chat-mail-20-filled"
             className="h-[200px] w-[200px] text-white"
           />
-          <p className="font-bold text-white text-4xl">Messenger</p>
-          <div className='flex flex-row gap-2 items-start justify-end'>
-            <p className='font-bold text-white text-base'>ni</p>
-            <p className="font-bold text-white text-4xl">Bert</p>
+          <p className="text-4xl font-bold text-white">Messenger</p>
+          <div className="flex flex-row items-start justify-end gap-2">
+            <p className="text-base font-bold text-white">ni</p>
+            <p className="text-4xl font-bold text-white">Bert</p>
           </div>
         </div>
       </div>
-      <div className="relative flex flex-col items-center w-[500px] min-w-[400px] p-6">
+      <div className="relative flex flex-col items-center w-full md:w-[500px] md:min-w-[400px] p-6">
         {loading ? (
           <div className="absolute z-20 grid w-12 h-12 bg-white rounded shadow-lg place-content-center top-2/4 -translate-y-2/4">
             <Icon icon="tabler:loader-2" className="w-5 h-5 animate-spin" />
@@ -35,14 +35,14 @@ const Login = () => {
           ""
         )}
         <Icon
-          icon="fluent:chat-mail-20-regular"
+          icon="fluent:chat-mail-20-filled"
           className="h-24 w-24 mt-40 text-[#0e53e4]"
         />
-        <h1 className="mt-12 text-4xl font-bold">Chat with Friends</h1>
-        <p className="mt-2 text-black/70 font-bold">
-          Sign in to join the group now.
+        <h1 className="mt-12 text-3xl font-bold text-center md:text-4xl">Chat with Friends</h1>
+        <p className="mt-2 font-bold text-black/70">
+          Sign in to join the group.
         </p>
-        <div className="flex flex-col max-w-xs gap-4 px-6 mt-10">
+        <div className="flex flex-col max-w-xs gap-4 mt-10 xs:px-6 ">
           <button
             onClick={signInWithFacebook}
             className="flex items-center gap-3 px-4 py-2 text-white font-medium rounded bg-[#3b5998] hover:opacity-80"

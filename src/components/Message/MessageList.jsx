@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import MessageItem from "./MessageItem";
-import { ChatContext } from "../context/ChatContextProvider";
+import { ChatContext } from "../../context/ChatContextProvider";
 
 const MessageList = () => {
   const { messages } = useContext(ChatContext);
@@ -16,7 +16,7 @@ const MessageList = () => {
     <div
       ref={messageBoxRef}
       id="message-box"
-      className="h-[500px] overflow-y-auto"
+      className="h-[500px] overflow-y-auto grow"
     >
       <div className="flex flex-col justify-end min-h-full px-5 pb-4">
         {messages.map((msg) => (

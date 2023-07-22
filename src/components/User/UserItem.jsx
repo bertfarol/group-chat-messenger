@@ -21,7 +21,7 @@ const UserItem = ({ data }) => {
         size="40"
         round="40px"
       />
-      <div className="font-medium grow flex flex-col ">
+      <div className="flex flex-col font-medium grow ">
         {displayName}
         <span className="text-xs text-black/70">Online</span>
       </div>
