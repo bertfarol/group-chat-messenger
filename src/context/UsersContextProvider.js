@@ -1,29 +1,53 @@
 import React, { createContext, useEffect, useState } from "react";
 import { db } from "../firebase";
-import { onSnapshot, orderBy, query, collection, addDoc, serverTimestamp, deleteDoc, doc, setDoc } from "firebase/firestore";
+import {
+  onSnapshot,
+  orderBy,
+  query,
+  collection,
+  addDoc,
+  serverTimestamp,
+  deleteDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 
 export const UserContext = createContext(null);
 
 const UsersContextProvider = ({ children }) => {
   const [newAccountUsers, setNewAccountUsers] = useState([]);
+  const [userIsTyping, setUserIsTyping] = useState([]);
 
   useEffect(() => {
     const chatCollectionRef = collection(db, "users");
     const usersQuery = query(chatCollectionRef, orderBy("createdAt", "asc"));
-    const unsubscribe = onSnapshot(usersQuery, (snapshot) => {
+    const unsubscribeUsers = onSnapshot(usersQuery, (snapshot) => {
       const updatedUsers = snapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
       setNewAccountUsers(updatedUsers);
     });
-    return unsubscribe;
+
+    // const userTypingQuery = query(
+    //   chatCollectionRef,
+    //   where("isTyping", "==", true)
+    // );
+
+    // const unsubscribeTyping = onSnapshot(userTypingQuery, (snapshot) => {
+    //   const typingUser = snapshot.docs.map((doc) => doc.data());
+    //   setUserIsTyping(typingUser);
+    // });
+
+    return unsubscribeUsers;
   }, []);
 
   const addOnlineUser = async (displayName, isTyping, id) => {
     try {
       const usersCollectionRef = collection(db, "users");
-      const userDocRef = doc(usersCollectionRef, id); 
+      const userDocRef = doc(usersCollectionRef, id);
 
       await setDoc(userDocRef, {
         displayName: displayName,
@@ -31,7 +55,6 @@ const UsersContextProvider = ({ children }) => {
         uid: id,
         createdAt: serverTimestamp(),
       });
-
     } catch (error) {
       console.log("Error adding user: ", error);
     }
@@ -46,7 +69,25 @@ const UsersContextProvider = ({ children }) => {
     }
   };
 
-  const contextValue = { newAccountUsers, addOnlineUser, deleteOnlineUser };
+  const updateUserIsTyping = async (isTyping, id) => {
+    try {
+      const usersCollectionRef = collection(db, "users");
+      const userDocRef = doc(usersCollectionRef, id);
+      await updateDoc(userDocRef, {
+        isTyping: isTyping,
+      });
+    } catch (error) {
+      console.log("Error updating isTyping: ", error);
+    }
+  };
+
+  const contextValue = {
+    newAccountUsers,
+    addOnlineUser,
+    deleteOnlineUser,
+    updateUserIsTyping,
+    userIsTyping,
+  };
   return (
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );

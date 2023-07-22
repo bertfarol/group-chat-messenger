@@ -29,10 +29,6 @@ const Navbar = () => {
           size="40"
           round="40px"
         />
-        {/* <div className="overflow-hidden bg-white rounded-full h-7 w-7">
-          <img src={profilePic} alt={displayName} className="w-full h-full" />
-        </div> */}
-        {/* hover menu */}
         <div className="absolute top-1 right-0 w-[170px] hidden group-hover:inline-block">
           <div className="p-4 mt-12 bg-white rounded shadow-standard ">
             <button

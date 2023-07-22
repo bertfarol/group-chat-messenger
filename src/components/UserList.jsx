@@ -7,7 +7,7 @@ const UserList = () => {
   const { newAccountUsers } = useContext(UserContext);
   const { user } = useContext(AuthContext);
 
-  console.log("userDisplayName", user);
+  console.log("newAccountUsers: ", newAccountUsers);
 
   return (
     <div className="w-[240px] border-r py-4">
