@@ -7,7 +7,7 @@ const MessageItem = ({ data }) => {
 
   const sender = displayName === user;
 
-  const messageStyle = sender ? "bg-[#191919] text-white" : "bg-[#efeaea]";
+  const messageStyle = sender ? "bg-[#0e53e4] text-white" : "bg-[#efeaea]";
 
   const messagePosition = sender ? "self-end" : "";
 

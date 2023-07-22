@@ -9,15 +9,17 @@ const Messenger = () => {
   const { displayName } = useContext(AuthContext);
 
   return (
-    <div className="mx-auto overflow-hidden border max-w-7xl lg:shadow-standard lg:rounded-lg lg:mt-14">
-      <Navbar />
-      <div className="flex">
-        <UserList />
-        <div className="grow">
-          <ChatContainer />
+    <div className="mx-auto max-w-7xl mt-14 px-4">
+      <div className="border lg:shadow-standard rounded-lg overflow-hidden">
+        <Navbar />
+        <div className="flex">
+          <UserList />
+          <div className="grow">
+            <ChatContainer />
+          </div>
         </div>
+        {!displayName && <GuestAddName />}
       </div>
-      {!displayName && <GuestAddName />}
     </div>
   );
 };

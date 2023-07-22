@@ -5,20 +5,17 @@ import {
   orderBy,
   query,
   collection,
-  addDoc,
   serverTimestamp,
   deleteDoc,
   doc,
   setDoc,
   updateDoc,
-  where,
 } from "firebase/firestore";
 
 export const UserContext = createContext(null);
 
 const UsersContextProvider = ({ children }) => {
   const [newAccountUsers, setNewAccountUsers] = useState([]);
-  const [userIsTyping, setUserIsTyping] = useState([]);
 
   useEffect(() => {
     const chatCollectionRef = collection(db, "users");
@@ -30,16 +27,6 @@ const UsersContextProvider = ({ children }) => {
       }));
       setNewAccountUsers(updatedUsers);
     });
-
-    // const userTypingQuery = query(
-    //   chatCollectionRef,
-    //   where("isTyping", "==", true)
-    // );
-
-    // const unsubscribeTyping = onSnapshot(userTypingQuery, (snapshot) => {
-    //   const typingUser = snapshot.docs.map((doc) => doc.data());
-    //   setUserIsTyping(typingUser);
-    // });
 
     return unsubscribeUsers;
   }, []);
@@ -86,7 +73,6 @@ const UsersContextProvider = ({ children }) => {
     addOnlineUser,
     deleteOnlineUser,
     updateUserIsTyping,
-    userIsTyping,
   };
   return (
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>

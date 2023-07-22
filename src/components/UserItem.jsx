@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import React from "react";
 import Avatar from "react-avatar";
 
@@ -22,7 +21,10 @@ const UserItem = ({ data }) => {
         size="40"
         round="40px"
       />
-      <div className="font-medium grow">{displayName}</div>
+      <div className="font-medium grow flex flex-col ">
+        {displayName}
+        <span className="text-xs text-black/70">Online</span>
+      </div>
       <div className="text-xs text-black/70 animate-pulse">
         {isTyping ? "Typing..." : ""}
       </div>
