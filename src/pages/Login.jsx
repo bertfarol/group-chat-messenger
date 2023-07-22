@@ -26,7 +26,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="relative flex flex-col items-center w-full md:w-[500px] md:min-w-[400px] p-6">
+      <div className="relative flex flex-col items-center w-full md:w-[500px] md:min-w-[400px] p-6 justify-center md:justify-start">
         {loading ? (
           <div className="absolute z-20 grid w-12 h-12 bg-white rounded shadow-lg place-content-center top-2/4 -translate-y-2/4">
             <Icon icon="tabler:loader-2" className="w-5 h-5 animate-spin" />
@@ -36,9 +36,11 @@ const Login = () => {
         )}
         <Icon
           icon="fluent:chat-mail-20-filled"
-          className="h-24 w-24 mt-40 text-[#0e53e4]"
+          className="h-24 w-24 md:mt-40 text-[#0e53e4]"
         />
-        <h1 className="mt-12 text-3xl font-bold text-center md:text-4xl">Chat with Friends</h1>
+        <h1 className="mt-12 text-3xl font-bold text-center md:text-4xl">
+          Chat with Friends
+        </h1>
         <p className="mt-2 font-bold text-black/70">
           Sign in to join the group.
         </p>

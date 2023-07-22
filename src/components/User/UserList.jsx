@@ -9,7 +9,7 @@ const UserList = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="w-[240px] border-r">
+    <div className="w-[240px] border-r hidden md:inline-block">
       <UserNavbar />
       {newAccountUsers.map((newUser) => {
         if (newUser.uid !== user) {

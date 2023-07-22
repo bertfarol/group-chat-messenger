@@ -16,8 +16,15 @@ const ChatNavbar = () => {
   });
 
   return (
-    <nav className="flex items-center justify-end px-4 border-b select-none">
-      <div ref={menuRef} className="relative cursor-pointer min-h-[65px] flex items-center">
+    <nav className="flex items-center justify-between px-4 border-b select-none md:justify-end">
+      <Icon
+        icon="fluent:chat-mail-20-filled"
+        className="h-8 w-8 text-[#0e53e4] md:hidden"
+      />
+      <div
+        ref={menuRef}
+        className="relative cursor-pointer min-h-[65px] flex items-center"
+      >
         <div
           onClick={() => setShowMenu(!showMenu)}
           className="flex items-center gap-4 px-2 py-1 rounded hover:bg-[#f8f8f8]"
