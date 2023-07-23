@@ -45,13 +45,13 @@ const Login = () => {
           Sign in to join the group.
         </p>
         <div className="flex flex-col max-w-[240px] gap-4 mt-10 xs:px-6 ">
-          <button
+          {/* <button
             onClick={signInWithFacebook}
             className="flex items-center gap-3 px-4 py-2 text-white font-medium rounded bg-[#3b5998] hover:opacity-80"
           >
             <Icon icon="uil:facebook" className="w-5 h-5 border-none" />
             Sign in with Facebook
-          </button>
+          </button> */}
           <button
             onClick={signInAsGuest}
             className="flex items-center gap-3 px-4 py-2 font-medium rounded bg-[#f4b400] text-white hover:opacity-80"
